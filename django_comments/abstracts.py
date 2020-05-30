@@ -129,16 +129,17 @@ class CommentAbstractModel(BaseCommentAbstractModel):
 
     name = property(_get_name, _set_name, doc="The name of the user who posted this comment")
 
-    def _get_email(self):
-        return self.userinfo["email"]
-
-    def _set_email(self, val):
-        if self.user_id:
-            raise AttributeError(_("This comment was posted by an authenticated "
-                                   "user and thus the email is read-only."))
-        self.user_email = val
-
-    email = property(_get_email, _set_email, doc="The email of the user who posted this comment")
+# ROIL deactivated to not reveal email through Comments
+#    def _get_email(self):
+#        return self.userinfo["email"]
+#
+#    def _set_email(self, val):
+#        if self.user_id:
+#            raise AttributeError(_("This comment was posted by an authenticated "
+#                                   "user and thus the email is read-only."))
+#        self.user_email = val
+#
+#    email = property(_get_email, _set_email, doc="The email of the user who posted this comment")
 
     def _get_url(self):
         return self.userinfo["url"]

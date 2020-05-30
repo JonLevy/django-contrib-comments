@@ -99,7 +99,7 @@ class CommentDetailsForm(CommentSecurityForm):
     Handles the specific details of the comment (name, comment, etc.).
     """
     name = forms.CharField(label=pgettext_lazy("Person name", "Name"), max_length=50)
-    email = forms.EmailField(label=_("Email address"))
+#    email = forms.EmailField(label=_("Email address"))  # ROIL removed email
     url = forms.URLField(label=_("URL"), required=False)
     # Translators: 'Comment' is a noun here.
     comment = forms.CharField(label=_('Comment'), widget=forms.Textarea,
@@ -141,7 +141,7 @@ class CommentDetailsForm(CommentSecurityForm):
             content_type=ContentType.objects.get_for_model(self.target_object),
             object_pk=force_str(self.target_object._get_pk_val()),
             user_name=self.cleaned_data["name"],
-            user_email=self.cleaned_data["email"],
+#            user_email=self.cleaned_data["email"],  # ROIL removed
             user_url=self.cleaned_data["url"],
             comment=self.cleaned_data["comment"],
             submit_date=timezone.now(),
@@ -161,7 +161,7 @@ class CommentDetailsForm(CommentSecurityForm):
             content_type=new.content_type,
             object_pk=new.object_pk,
             user_name=new.user_name,
-            user_email=new.user_email,
+#            user_email=new.user_email,  # ROIL removed
             user_url=new.user_url,
         )
         for old in possible_duplicates:
